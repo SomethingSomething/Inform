@@ -42,11 +42,37 @@ $result_a = $conn->query($sql_a);
 if ($result_a->num_rows > 0) {
     // output data of each row
     while($row = $result_a->fetch_assoc()) {
-    
-    
-    	$prep_sql = "INSERT INTO sendersettings (userid) VALUES ('".$row['id']."');";
+    	$activation_token = substr(hash('whirlpool', time() * time() * rand(10000,99999)), 0,5);
+		$activation_expire = (time() + (30*60));
+    	$prep_sql = "INSERT INTO sendersettings (userid) VALUES ('".$row['id']."'); INSERT INTO activations (token, user_id, expires, used) VALUES ('$activation_token', '".$row['id']."', '$activation_expire', 0);";
 
 			if(mysqli_multi_query($conn,$prep_sql)) {
+			
+			$activation_message = file_get_contents('confirm_message.txt');
+			
+			$act_replace = array('[custname]','[aid]');
+			$act_with = array($name, $activation_token);
+			
+			$activation_message_filled = str_replace($act_replace, $act_with, $activation_message);
+			
+			$subject = "Account Activation";
+			$headers = "From: activations@saga.systems";
+			
+			$url = 'http://cnspc2.net/mailer/index.php';
+			$data = array('to' => $email, 'subject' => $subject, 'message' => $activation_message_filled, 'from' => 'activations@saga.systems');
+
+			// use key 'http' even if you send the request to https://...
+			$options = array(
+  			  'http' => array(
+      		  'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+      		  'method'  => 'POST',
+      		  'content' => http_build_query($data),
+   			 ),
+			);
+			$context  = stream_context_create($options);
+			$result = file_get_contents($url, false, $context);
+
+			//mail($email,$subject,$activation_message_filled,$headers);
     
     	$data = array("valid" => "signup");
     	

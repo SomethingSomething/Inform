@@ -1,0 +1,11 @@
+Dear [custname],
+
+Thank you for signing up for Inform by Saga Systems!
+
+There's just one more step before you'll be able to use your Saga Systems account, which is to confirm it.
+Please enter the code below into your browser.
+
+[aid]
+
+Thanks,
+Saga Systems Team

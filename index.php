@@ -149,6 +149,8 @@ $('#loginbtn').click(function() { // catch the form's submit event
             		$("#status").fadeIn("slow");
             	} else if(obj.valid == "signup") {
             		signupLogin();
+            	} else if(obj.valid = "activate") {
+            		window.location.replace("/inform/signup/splash_2.php?message=Please%20activate%20your%20account%20before%20logging%20in.");
             	} else {
             		$("html").css("cursor", "auto");
             		alert("Your login is invalid.");

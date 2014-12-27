@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
     	
+    	
     	session_start();
     	$sessstr = rand(10000,99999)."__".(time() * time());
     	$_SESSION["sessid"] = hash('whirlpool', $sessstr);

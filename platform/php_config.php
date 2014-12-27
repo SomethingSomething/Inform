@@ -22,6 +22,7 @@ $sessionID = $_COOKIE["sessionID"];
 $sessionValid = $_COOKIE["valid"];
 $begin = $_COOKIE["begin"];
 $end = $_COOKIE["end"];
+$userid = $_COOKIE["usrid"];
 
 if(time() >= $end || !($sessionID) || ($sessionValid == "false")) {
 	header("Location: /inform?message=Invalid%20Session");
@@ -50,6 +51,22 @@ if ($result_a->num_rows > 0) {
     	$logout = $row["logout"];
     }
 }
+
+$sql_b = "SELECT confirmed FROM logins WHERE id = $userid";
+//echo $sql."<br>";
+$result_b = $conn->query($sql_b);
+
+if ($result_b->num_rows > 0) {
+    // output data of each row
+    while($row = $result_b->fetch_assoc()) {
+		$activated = $row["confirmed"];
+    }
+}
+
+if($activated != 1) {
+header("Location: http://devbrain.sagabrain.com/inform/signup/splash_2.php?message=Please%20activate%20your%20account%20before%20logging%20in.");
+die();
+} 
 
 $client = $_SERVER['REMOTE_ADDR'];
 

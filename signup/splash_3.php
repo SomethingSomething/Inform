@@ -127,14 +127,6 @@ margin-left:-60px;
 		height:120%;
 	}
 }
-
-#activate {
-border: 0px;
-background-color: transparent;
-font-size: 35px;
-text-align: center;
-text-decoration: underline;
-}
 </style>
 </head>
 <body>
@@ -143,42 +135,47 @@ text-decoration: underline;
 <div id="loadbar">Sign Up</div>
 <div id="subload"></div>
 <div id="status">
-	<h4>Activation:</h4>
-	<form action="/inform/signup/activate.php" id="activateForm" method="POST">
-		<input type="text" name="actid" id="activate" class="wideform liteform" placeholder="Activation ID"><br>
-		<input type="submit" class="button" value="Activate" style="font-size:0.5em">
-	</form>
+	<h4>Billing Details:</h4>
+	<p>We bill by the notification, as you send more notifications, they become cheaper. See the table below for more details.</p>
+	<table border="0" id="price_table">
+<thead>
+	<tr>
+		<th><strong>Notifications</strong></th>
+		<th><strong>Price per Notification</strong></th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>0-1000</td>
+		<td>$0.01</td>
+	</tr>
+	<tr>
+		<td>1001-10000</td>
+		<td>$0.0075</td>
+	</tr>
+	<tr>
+		<td>10001-20000</td>
+		<td>$0.005</td>
+	</tr>
+	<tr>
+		<td>20001-50000</td>
+		<td>$0.004</td>
+	</tr>
+	<tr>
+		<td>50001 - &infin;</td>
+		<td>$0.002</td>
+	</tr>
+</tbody>
+<tfoot>
+
+</tfoot>
+</table>
+
 </div>
+<button id="go" class="button">Agree</button>
 <script>
-$('#activateForm').submit(function() { // catch the form's submit event
-	
-	event.preventDefault();
-	
-	$("html").css("cursor", "progress");
-	$("#status").fadeOut("slow");
-	
-    $.ajax({ // create an AJAX call...
-        data: $(this).serialize(), // get the form data
-        type: 'POST', // GET or POST
-        url: 'activate.php', // the file to call
-        success: function(response) { // on success..
-        console.log(response);
-            var obj = jQuery.parseJSON(response);
-            	console.log(response);
-            	if(obj.valid == "true") {
-            		window.location.replace("splash_3.php");
-            	} else if(obj.valid == "expired") {
-            		$("html").css("cursor", "auto");
-            		alert("Sorry, but your login code has expired or has already been used. You will now be redirected to the signup page where you can get a new code.");
-            		window.location.replace('/inform?message=Code%20used%20or%20expired.');
-            	} else {
-            		$("html").css("cursor", "auto");
-            		alert("Your activation code is invalid.");
-            		$("#status").fadeIn("slow");
-            	}
-        }
-    });
-    return false; // cancel original event to prevent form submitting
+$("#go").click(function() {
+	window.location.replace("/inform/console.php");
 });
 </script>
 
