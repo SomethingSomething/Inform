@@ -1,0 +1,101 @@
+.button {
+font-size: 1.25em;
+padding: 0.85em 1.5em;
+display: inline-block;
+background: #0090c5;
+color: #fff;
+text-decoration: none;
+border-radius: 6px;
+font-weight: 800;
+outline: 0;
+border: 0;
+cursor: pointer;
+margin-top:15px;
+}
+.center100 {
+left:0px;
+width:100%;
+text-align:center;
+}
+.hidden {
+display:none;
+}
+.green {
+color:#27ae60;
+}
+.redbg {
+background-color:#e74c3c;
+color:#ecf0f1;
+}
+.greenbg {
+background-color:#2ecc71;
+color:#ecf0f1;
+}
+.amberbg {
+background-color:#d35400;
+color:#ecf0f1;
+}
+.wideform {
+width:250px;
+}
+.noborder {
+border:0px;
+}
+.legend {
+padding-top:10px;
+color:#2980b9;
+text-decoration:underline;
+}
+.highlight {
+background-color:#f1c40f;
+color:black;
+padding:2px;
+}
+.hand {
+cursor:pointer;
+}
+table {
+  font-family: "Helvetica Neue", Helvetica, sans-serif
+}
+
+caption {
+  text-align: left;
+  color: silver;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+thead {
+  background: SteelBlue;
+  color: white;
+}
+
+th,
+td {
+  padding: 5px 10px;
+}
+
+tbody tr:nth-child(even) {
+  background: WhiteSmoke;
+}
+
+tbody tr td:nth-child(2) {
+  text-align:center;
+}
+
+tbody tr td:nth-child(3),
+tbody tr td:nth-child(4) {
+  text-align: right;
+  font-family: monospace;
+}
+
+tfoot {
+  background: SeaGreen;
+  color: white;
+  text-align: right;
+}
+
+tfoot tr th:last-child {
+  font-family: monospace;
+}
