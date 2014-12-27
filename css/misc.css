@@ -11,7 +11,41 @@ outline: 0;
 border: 0;
 cursor: pointer;
 margin-top:15px;
+-webkit-animation: buttonHoverOff 0.2s; /* Chrome, Safari, Opera */
+animation: buttonHoverOff 0.2s;
+-webkit-animation-fill-mode:forwards;
+-moz-animation-fill-mode:forwards;
+animation-fill-mode:forwards;
 }
+
+.button:hover {
+-webkit-animation: buttonHoverOn 0.2s; /* Chrome, Safari, Opera */
+animation: buttonHoverOn 0.2s;
+-webkit-animation-fill-mode:forwards;
+-moz-animation-fill-mode:forwards;
+animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes buttonHoverOn {
+    from {background-color: #0090c5;}
+    to {background-color: #2c3e50;}
+}
+
+@keyframes buttonHoverOn {
+    from {background-color: #0090c5;}
+    to {background-color: #2c3e50;}
+}
+
+@-webkit-keyframes buttonHoverOff {
+    from {background-color: #2c3e50;}
+    to {background-color: #0090c5;}
+}
+
+@keyframes buttonHoverOff {
+    from {background-color: #2c3e50;}
+    to {background-color: #0090c5;}
+}
+
 .center100 {
 left:0px;
 width:100%;
@@ -50,6 +84,9 @@ text-decoration:underline;
 background-color:#f1c40f;
 color:black;
 padding:2px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
 }
 .hand {
 cursor:pointer;
@@ -98,4 +135,15 @@ tfoot {
 
 tfoot tr th:last-child {
   font-family: monospace;
+}
+
+.largeform {
+	width:150px;
+	font-size:25px;
+	font-style:bold;
+	padding:5px;
+	text-align:center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }

@@ -47,8 +47,6 @@ $conn->close();
 ?>
 <h3 class="amber">Welcome to Inform</h3>
 <h4>System Status: <span class="green">OK</h4>
-<p>Page generated at: <?php echo time(); ?></p>
-<button class="button" onclick="loadMainWindow();">Refresh</button>
 <h4>Send Message</h4>
 <form action="platform/sendmessage.php" method="POST" id="sendMessageForm">
 <label for="msg_send_predef_sel">Predefined Message: </label>
@@ -64,4 +62,12 @@ $conn->close();
 <input type="text" class="liteform" placeholder="Customer ID" name="cid" id="msg_send_cid">
 <br>
 <input type="submit" class="button" value="Send Message">
+</form>
+<br>
+<h4>Add Customer</h4>
+<form action="platform/addcustomer.php" method="POST" id="addCustomerForm">
+<input type="text" class="liteform" name="customerName" placeholder="Customer ID"><br>
+<input type="text" id="customerDeviceID" class="liteform largeform" maxlength="5" name="deviceID" placeholder="Device ID">
+<span class="highlight hand" id="editCustomerDeviceID">Edit</span><br>
+<input class="button" value="Add Customer" type="submit">
 </form>

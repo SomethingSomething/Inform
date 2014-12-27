@@ -320,3 +320,6 @@ border: 0px;
 text-align: left;
 background-color: transparent;
 }
+#editCustomerDeviceID {
+display:none;
+}

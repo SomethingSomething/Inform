@@ -258,6 +258,30 @@ $("#clientaccountpasswordconf").keyup(function() {
 		$("#clientaccountpasswordconf").css("background-color","transparent");
 	}
 });
+
+$("#customerDeviceID").keyup(function() {
+	if($(this).val().length == 5) {
+		$(this).addClass("amberbg").removeClass("redbg").removeClass("greenbg");
+		$.post( "/inform/platform/checkdeviceid.php", { id: $(this).val()})
+  			.done(function( data ) {
+  				console.log(data);
+    			var obj = jQuery.parseJSON(data);
+    			console.log(obj);
+    			console.log(obj.valid);
+    			if(obj.valid == "true") {
+    				$("#editCustomerDeviceID").show();
+    				console.log("adding bg");
+    				$("#customerDeviceID").removeClass("amberbg").removeClass("redbg").addClass("greenbg");
+    				$("#customerDeviceID").attr("readonly", "readonly");
+    			}
+  			});
+	} else {
+		$(this).removeClass("amberbg").addClass("redbg").removeClass("greenbg");
+	}	
+});
+$("#editCustomerDeviceID").click(function() {
+	$("#customerDeviceID").val("").removeAttr("readonly").removeClass("amberbg").removeClass("greenbg").addClass("redbg").focus();
+});
 }
 
 setInterval(function() {
